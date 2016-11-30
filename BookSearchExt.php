@@ -3,6 +3,7 @@
     <head>
        <meta http-equiv="content-type" content="text/xml; charset=utf-8">
        <title>알라딘 도서검색</title>
+       <link rel="stylesheet" href="SearchResult.css">
     </head>
     <body>
 <?php            
@@ -22,25 +23,31 @@
         function displayResultPage($pagenum, $search, $querytype)    {
             $aladinquery1 = 'http://www.aladin.co.kr/ttb/api/ItemSearch.aspx?ttbkey=ttbnightwalkerpn1126001&query=';
             $aladinquery2 = '&MaxResults=10&start=';
-            $aladinquery3 = '&SearchTarget=Book&output=xml&Version=20070901&Cover=Big';
+            $aladinquery3 = '&SearchTarget=Book&output=xml&Version=20070901&Cover=Mid';
             
             $finalquery = $aladinquery1 . $search . "&QueryType=" . $querytype . $aladinquery2 . $pagenum . $aladinquery3;
-            echo "쿼리 : " . $finalquery . "<br>"; 
+            echo "<ul>쿼리 : " . $finalquery . "</ul>";
 
             $xmlresult = simplexml_load_file($finalquery);
 
             if ($xmlresult->item)   {
                 $numofresult = $xmlresult->totalResults ;                
-                echo "<h3> 검색결과 : " . $numofresult . " 개</h3><br>" ;
-                
+                echo "<ul>검색결과 : " . $numofresult . " 개</ul>" ;
+                echo "</header>";
                 foreach($xmlresult->item as $item)    {
-                echo "Title : ";
-                echo "<a href='" . $item->link . "'>" . $item->title . "</a><br>" ;
-                echo "Author : " . $item->author . "<br>" ;
-                echo "Price : ". $item->priceSales . "<br>" ;
-                echo "Year : ". getpubyear($item->pubDate) . "<br>" ;
+                
+                echo "<nav>";
                 echo "<a href='" . $item->link . "'>" ;
-                echo "<img src='" . $item->cover . "' alt=cover></a><br><br>" ;
+                echo "<img src='" . $item->cover . "' alt=cover align='top|left'></a>" ;
+                echo "</nav>";
+                
+                echo "<article>";    
+                echo "제목 : ";
+                echo "<a href='" . $item->link . "'>" . $item->title . "</a><br>" ;
+                echo "저자 : " . $item->author . "<br>" ;
+                echo "가격 : ". $item->priceSales . "<br>" ;
+                echo "년도 : ". getpubyear($item->pubDate) . "<br>" ;
+                echo "</article>";                
                 }
             }
             else    {
@@ -69,14 +76,16 @@
                     break ;
             }
             
-            echo "검색타입 : " . $querytype . "<br>";
-            echo "검색어 : " . urldecode($search) . "<br>";
+            echo "<header>";
+            echo "<ul>검색타입 : " . $querytype . "</ul>";
+            echo "<ul>검색어 : " . urldecode($search) . "</ul>";
             
             $numofresult = displayResultPage($_GET['id'], $search, $querytype);
             
             if ( $numofresult ) {
                 $numofpage = $numofresult/10 + 1 ;
-                echo "검색결과 : " . $numofresult . "<br>";
+                
+                echo "<footer>";
                 echo "결과페이지링크수 : " . $numofpage . "<br>";
                 
                 
@@ -92,11 +101,13 @@
     //                }
 
                     // 맨마지막 페이지로 링크
+                    echo "</footer>";
                 }                
             }
             else {
                 echo "검색어 : " . urldecode($search) . "<br>" ;
                 echo "<h4>결과없음</h4>";
+                echo "</header>";
             }
         }
         else    {

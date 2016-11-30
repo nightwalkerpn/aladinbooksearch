@@ -1,21 +1,31 @@
-header {
-    padding: 1em;
-    color: white;
-    background-color: black;
+div.container {
+    width: 100%;
+/*    border-left: 1px solid gray;*/
+}
+
+header, footer {
+    padding-top: 2px;
+    padding-bottom: 1px;
+    color: black;
+    background-color: lightgray;
     clear: left;
     text-align: left;
 }
 
 nav {
     float: left;
-    max-width: 160px;
+    width: 90px;
+    height: 130px;
     margin: 0;
-    padding: 1em;
+    padding: 10px;
+    margin-bottom: 5px;
 }
 
 article {
-    margin-left: 170px;
+    height: 130px;
     border-left: 1px solid gray;
-    padding: 1em;
+    padding: 10px;
+    margin-bottom: 5px;
     overflow: hidden;
+    pad
 }

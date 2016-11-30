@@ -1,0 +1,18 @@
+{
+    "manifest_version": 2,
+    
+    "name": "AladinBooks QuickSearch",
+    "description:": "This extension displays book search result in http://www.aladin.co.kr/",
+    "version": "0.9",
+    
+    "browser_action": {
+        "default_icon": "noun_38651_cc.png",
+        "default_popup": "BookSearchExt.html",
+        "default_title": "Book Here!!!"
+    },
+    "permissions": [
+        "activeTab",
+        "contextMenus",
+        "downloads"
+    ]
+}
