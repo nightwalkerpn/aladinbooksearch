@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+       <meta http-equiv="content-type" content="text/xml; charset=utf-8">
+       <title>알라딘 도서검색</title>
+    </head>
+    <body>
+        <h2>알라딘 도서검색</h2>
+        <form name="input" method="post" action="BookSearchExt.php?id=1">
+            <input type="radio" id="title" name="querytype" value="title" checked>제목
+            <input type="radio" id="author" name="querytype" value="author">저자
+            <input type="radio" id="publisher" name="querytype" value="publisher">출판사
+            <input type="radio" id="default" name="querytype" value="default">아무거나
+            <br>
+            <input type="text" id="search" name="search" required><br>
+            <input type="submit" value="검색">  
+        </form>
+    </body>
+</html>
